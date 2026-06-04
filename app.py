@@ -21,8 +21,8 @@ projects = db["projects"]
 admin_logs = db["admin_logs"]
 messages = db["messages"]
 
-ADMIN_EMAIL = os.getenv("ADMIN_EMAIL", "infohub.net.in@gmail.com")
-ADMIN_PASSWORD = os.getenv("ADMIN_PASSWORD", "infohub@2724")
+ADMIN_EMAIL = os.getenv("ADMIN_EMAIL",)
+ADMIN_PASSWORD = os.getenv("ADMIN_PASSWORD",)
 ADMIN_NAME = os.getenv("ADMIN_NAME", "Niranjan")
 ADMIN_PHONE = os.getenv("ADMIN_PHONE", "+91 7418203404")
 ADMIN_LOCATION = os.getenv("ADMIN_LOCATION", "India")
