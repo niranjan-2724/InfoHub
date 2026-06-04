@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>InfoHub</title>
+    <link rel="icon" type="image/png" href="../static/images/logo.png">
+    <link rel="stylesheet" href="../static/css/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+</head>
+
+<body>
+
+    <nav class="navbar">
+        <div class="brand">
+            <span>InfoHub</span>
+        </div>
+
+        <input type="checkbox" id="menu-bar" style="display: none;">
+        <label for="menu-bar" class="menu-toggle"><i class="fas fa-bars"></i></label>
+
+        <div class="nav-links">
+            <a href="index.html">Home</a>
+            <a href="projects.html">Projects</a>
+            <a href="about.html">About</a>
+            <a href="blog.html">Blog</a>
+            <a href="contact.html">Contact</a>
+            <a href="login.html" class="mobile-action">Login</a>
+            <a href="register.html" class="mobile-action mobile-register-btn">Register</a>
+        </div>
+
+        <div class="nav-actions">
+            <a href="login.html" class="login-link">Login</a>
+            <a href="register.html" class="register-btn">Register</a>
+        </div>
+    </nav>
+
+    {% with messages = get_flashed_messages(with_categories=true) %}
+    {% if messages %}
+    <div class="flash-container">
+        {% for category, message in messages %}
+        <div class="flash-message {{ 'info' if category == 'message' else category }}">
+            <span>{{ message }}</span>
+            <button class="flash-close-btn" onclick="this.parentElement.remove()">&times;</button>
+        </div>
+        {% endfor %}
+    </div>
+    {% endif %}
+    {% endwith %}
+
+    <section class="hero">
+        <div class="hero-content">
+            <h1>Welcome to InfoHub</h1>
+            <p>Your gateway to innovative projects, career resources, and cutting-edge AI tools</p>
+
+            <div class="hero-buttons">
+
+                <a href="/projects" class="hero-btn primary-btn">
+                    <i class="fas fa-folder-open"></i>
+                    Explore Projects
+                </a>
+
+                <a href="/register" class="hero-btn secondary-btn">
+                    <i class="fas fa-user-plus"></i>
+                    Get Started
+                </a>
+
+            </div>
+    </section>
+
+    <section class="section">
+        <h2>Featured Projects</h2>
+
+        <div class="project-grid">
+            <div class="project-card">
+                <img src="../static/images/aitools.webp">
+                <div class="project-footer">
+                    <a href="/projects/ai-tools-directory/index.html" class="project-arrow">
+
+                    </a>
+                </div>
+
+                <h3>AI Tools Directory</h3>
+                <p>A collection of useful AI tools and resources arranged in one simple platform.</p>
+                <small>HTML, CSS, JavaScript</small>
+            </div>
+
+            <div class="project-card">
+                <img src="../static/images/nexus.jpg">
+                <h3>Project Nexus</h3>
+                <p>A future-focused intelligent technology project currently in planning and development.</p>
+                <small>Coming Soon</small>
+            </div>
+        </div>
+
+
+        </div>
+    </section>
+
+    <section class="why-section">
+        <h2>Why Choose InfoHub?</h2>
+
+        <div class="why-grid">
+            <div class="why-card">
+                <div class="icon-circle">🚀</div>
+                <h3>Innovative Projects</h3>
+                <p>Creative digital projects built with modern technologies and real-world ideas.</p>
+            </div>
+
+            <div class="why-card">
+                <div class="icon-circle">🤖</div>
+                <h3>AI Technology</h3>
+                <p>Exploring artificial intelligence, automation, and smart software solutions.</p>
+            </div>
+
+            <div class="why-card">
+                <div class="icon-circle">🌐</div>
+                <h3>Future Ready</h3>
+                <p>Building scalable platforms that can grow into advanced tech products.</p>
+            </div>
+        </div>
+    </section>
+
+    <footer class="footer">
+        <div class="footer-grid">
+            <div>
+                <h3>InfoHub</h3>
+                <p>Building innovative software, AI solutions,
+                    and future technology projects while sharing
+                    my journey as a developer and entrepreneur.</p>
+            </div>
+
+            <div>
+                <h3>Quick Links</h3>
+                <a href="index.html">Home</a>
+                <a href="projects.html">Projects</a>
+                <a href="about.html">About</a>
+                <a href="contact.html">Contact</a>
+            </div>
+
+            <div>
+                <h3>Resources</h3>
+                <a href="blog.html">Blog</a>
+                <a href="#">Documentation</a>
+                <a href="#">GitHub</a>
+                <a href="#">Portfolio</a>
+            </div>
+
+            <div>
+                <h3>Connect</h3>
+
+                <div class="footer-social">
+                    <a href="#"><i class="fab fa-github"></i></a>
+                    <a href="#"><i class="fab fa-linkedin"></i></a>
+                    <a href="#"><i class="fab fa-twitter"></i></a>
+                    <a href="#"><i class="fab fa-instagram"></i></a>
+                </div>
+            </div>
+        </div>
+        <div
+            style="text-align: center; margin-top: 40px; padding-top: 20px; border-top: 1px solid #334155; font-size: 14px; color: #94a3b8; width: 100%;">
+            <p>&copy; 2025 InfoHub. All Rights Reserved.</p>
+        </div>
+    </footer>
+
+    <script src="../static/js/main.js"></script>
+</body>
+
+</html>

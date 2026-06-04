@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About - InfoHub</title>
+    <link rel="icon" type="image/png" href="../static/images/logo.png">
+    <link rel="stylesheet" href="../static/css/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+</head>
+
+<body>
+
+    <nav class="navbar">
+        <div class="brand"> <span>InfoHub</span>
+        </div>
+
+        <input type="checkbox" id="menu-bar" style="display: none;">
+        <label for="menu-bar" class="menu-toggle"><i class="fas fa-bars"></i></label>
+
+        <div class="nav-links">
+            <a href="index.html">Home</a>
+            <a href="projects.html">Projects</a>
+            <a href="about.html">About</a>
+            <a href="blog.html">Blog</a>
+            <a href="contact.html">Contact</a>
+            <a href="login.html" class="mobile-action">Login</a>
+            <a href="register.html" class="mobile-action mobile-register-btn">Register</a>
+        </div>
+
+        <div class="nav-actions">
+            <a href="login.html" class="login-link">Login</a>
+            <a href="register.html" class="register-btn">Register</a>
+        </div>
+    </nav>
+
+    {% with messages = get_flashed_messages(with_categories=true) %}
+        {% if messages %}
+            <div class="flash-container">
+                {% for category, message in messages %}
+                    <div class="flash-message {{ 'info' if category == 'message' else category }}">
+                        <span>{{ message }}</span>
+                        <button class="flash-close-btn" onclick="this.parentElement.remove()">&times;</button>
+                    </div>
+                {% endfor %}
+            </div>
+        {% endif %}
+    {% endwith %}
+
+    <section class="page-head">
+        <h1>About InfoHub</h1>
+        <p>Building the future, one project at a time</p>
+    </section>
+
+    <section class="about-section">
+        <div class="about-image">
+            <img src="../static/images/about.jpg">
+        </div>
+
+        <div class="about-content">
+            <h2>Our Mission</h2>
+            <p>
+                InfoHub is my personal digital platform where I showcase websites,
+                AI tools, software projects, blogs, and future startup ideas.
+            </p>
+
+            <h2>What We Do</h2>
+            <ul>
+                <li>Full-stack web application development</li>
+                <li>AI and machine learning based projects</li>
+                <li>Career and student-focused digital tools</li>
+                <li>Portfolio, blog, and project showcase system</li>
+            </ul>
+        </div>
+    </section>
+
+    <footer class="footer">
+        <div class="footer-grid">
+            <div>
+                <h3>InfoHub</h3>
+                <p>Showcasing innovative tech projects, AI tools, and digital ideas for the future.</p>
+            </div>
+
+            <div>
+                <h3>Quick Links</h3>
+                <a href="index.html">Home</a>
+                <a href="projects.html">Projects</a>
+                <a href="about.html">About</a>
+                <a href="blog.html">Blog</a>
+                <a href="contact.html">Contact</a>
+            </div>
+
+            <div>
+                <h3>Resources</h3>
+                <a href="#">Blog</a>
+                <a href="#">Documentation</a>
+                <a href="#">GitHub</a>
+                <a href="#">Portfolio</a>
+            </div>
+
+            <div>
+                <h3>Connect</h3>
+                <div class="footer-social">
+                    <a href="#"><i class="fab fa-github"></i></a>
+                    <a href="#"><i class="fab fa-linkedin"></i></a>
+                    <a href="#"><i class="fab fa-twitter"></i></a>
+                    <a href="#"><i class="fab fa-instagram"></i></a>
+                </div>
+            </div>
+        </div>
+        <div style="text-align: center; margin-top: 40px; padding-top: 20px; border-top: 1px solid #334155; font-size: 14px; color: #94a3b8; width: 100%;">
+            <p>&copy; 2025 InfoHub. All Rights Reserved.</p>
+        </div>
+    </footer>
+
+    <script src="../static/js/main.js"></script>
+</body>
+
+</html>

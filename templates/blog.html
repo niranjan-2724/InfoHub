@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Blog - InfoHub</title>
+    <link rel="icon" type="image/png" href="../static/images/logo.png">
+    <link rel="stylesheet" href="../static/css/style.css">
+</head>
+
+<body>
+
+    <nav class="navbar">
+        <div class="brand"><span>InfoHub</span></div>
+
+        <div class="nav-links">
+            <a href="/">Home</a>
+            <a href="/projects">Projects</a>
+            <a href="/about">About</a>
+            <a href="/blog">Blog</a>
+            <a href="/contact">Contact</a>
+        </div>
+
+        <div class="nav-actions">
+            {% if session.get('admin') %}
+            <a href="/admin/dashboard" class="login-link">Dashboard</a>
+            <a href="/logout" class="register-btn">Logout</a>
+            {% elif session.get('user') %}
+            <a href="/logout" class="register-btn">Logout</a>
+            {% else %}
+            <a href="/login" class="login-link">Login</a>
+            <a href="/register" class="register-btn">Register</a>
+            {% endif %}
+        </div>
+    </nav>
+
+    <section class="simple-blog">
+
+        <div class="blog-profile-card">
+            <div class="blog-photo">
+                <img src="/static/images/niranjan.jpg" alt="Niranjan">
+            </div>
+            <h1>Niranjan C</h1>
+            <p>Full Stack Developer</p>
+            <span>Future Entrepreneur</span>
+        </div>
+
+        <div class="blog-about-content">
+            <h2>About Me</h2>
+            <p>
+                I am Niranjan C, I am deeply interested in software development, artificial intelligence, machine
+                learning, and future technologies
+            </p>
+
+            <p>
+                My ultimate goal is to become a successful entrepreneur and build innovative technology companies
+                focused on Artificial Intelligence, Intelligent Automation, Software Solutions, and Future Computing
+                Systems. I am also working toward my long-term vision project, NexusAI, an AI-powered ecosystem designed
+                to integrate intelligent software, personal AI assistants, automation, and advanced technologies into a
+                unified platform.
+            </p>
+        </div>
+
+    </section>
+
+    <section class="blog-details">
+
+        <div class="detail-card">
+            <h3>📍 Location</h3>
+            <p>Kanyakumari, Tamil Nadu, India</p>
+        </div>
+
+        <div class="detail-card">
+            <h3>📞 Contact</h3>
+            <p>Email: infohub.net.in@gmail.com</p>
+            <p>Phone: 7418203404</p>
+        </div>
+
+        <div class="detail-card">
+            <h3>💻 Skills</h3>
+            <p>Full Stack Development, AI, Machine Learning, Web Development, Software Development</p>
+        </div>
+
+        <div class="detail-card">
+            <h3>🚀 Interests</h3>
+            <p>Entrepreneurship, AI, Software Development, Technology, Business</p>
+        </div>
+
+        <div class="detail-card full-card">
+            <h3>🧩 My Projects</h3>
+            <p>
+                InfoHub, Smart GOV Career Development Website for Students,
+                AI Tools Website, and my long-term future project Nexus.
+            </p>
+        </div>
+
+        <div class="detail-card full-card">
+            <h3>🌐 My Vision</h3>
+            <p>
+                My long-term vision is to build Project Nexus, a future technology
+                ecosystem focused on AI, software, privacy, automation, and intelligent
+                personal computing.
+            </p>
+        </div>
+
+    </section>
+
+</body>
+
+</html>
