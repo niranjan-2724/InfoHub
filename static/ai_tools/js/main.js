@@ -30,14 +30,31 @@ const categoriesData = {
 };
 
 const categoryIcons = {
-    "Video": "fas fa-video", "Text": "fas fa-font", "Image": "fas fa-image", "Audio": "fas fa-music",
-    "Editing": "fas fa-edit", "Code": "fas fa-code", "Marketing": "fas fa-chart-line",
-    "Productivity": "fas fa-tasks", "ShareMarket": "fas fa-chart-simple", "Health": "fas fa-heartbeat",
-    "Gaming": "fas fa-gamepad", "Networking": "fas fa-network-wired", "Food": "fas fa-utensils",
-    "Shopping": "fas fa-shopping-cart", "Education": "fas fa-graduation-cap", "Entertainment": "fas fa-film",
-    "Security": "fas fa-shield-alt", "Environment": "fas fa-leaf", "Lifestyle": "fas fa-smile",
-    "Social": "fas fa-users", "Travel": "fas fa-plane", "PersonalAssistant": "fas fa-user-tie",
-    "Research": "fas fa-flask", "Presentation": "fas fa-chalkboard", "Automation": "fas fa-robot"
+    "Video": "🎬",
+    "Text": "✍️",
+    "Image": "🖼️",
+    "Audio": "🎧",
+    "Editing": "✂️",
+    "Code": "💻",
+    "Marketing": "📢",
+    "Productivity": "✅",
+    "ShareMarket": "📈",
+    "Health": "❤️",
+    "Gaming": "🎮",
+    "Networking": "🌐",
+    "Food": "🍽️",
+    "Shopping": "🛒",
+    "Education": "🎓",
+    "Entertainment": "🎭",
+    "Security": "🛡️",
+    "Environment": "🌿",
+    "Lifestyle": "✨",
+    "Social": "👥",
+    "Travel": "✈️",
+    "PersonalAssistant": "🤵",
+    "Research": "🔬",
+    "Presentation": "📊",
+    "Automation": "🤖"
 };
 
 const categoryColors = {
@@ -74,7 +91,7 @@ function loadCategories() {
             <div onclick="window.location.href='category.html?cat=${cat}'" 
                  class="group bg-white rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-300 cursor-pointer overflow-hidden">
                 <div class="h-32 bg-gradient-to-r ${categoryColors[cat]} flex items-center justify-center">
-                    <i class="${categoryIcons[cat]} text-6xl text-white opacity-80"></i>
+                   <div class="category-emoji">${categoryIcons[cat]}</div>
                 </div>
                 <div class="p-5">
                     <h3 class="text-xl font-bold group-hover:text-purple-600 transition text-center">${cat}</h3>
@@ -129,15 +146,16 @@ function setupGlobalSearch() {
             </div>
             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
                 ${results.slice(0, 30).map(tool => `
-                    <div class="bg-white rounded-xl shadow-lg hover:shadow-xl p-6">
+             <div class="tool-card bg-white rounded-xl shadow-lg hover:shadow-xl p-6">
                         <div class="flex justify-between items-start mb-3">
                             <h3 class="text-xl font-bold text-purple-600">${escapeHtml(tool.name)}</h3>
                             <span class="text-xs px-2 py-1 rounded-full ${getPriceClass(tool.price)}">${tool.price}</span>
                         </div>
                         <p class="text-gray-500 text-sm mb-2">${tool.category} > ${tool.subcategory}</p>
                         <p class="text-gray-600 mb-4 text-sm">${escapeHtml(tool.desc.substring(0, 120))}${tool.desc.length > 120 ? '...' : ''}</p>
-                        <a href="${tool.url}" target="_blank" class="text-purple-600 font-semibold">Try Tool →</a>
-                    </div>
+<a href="${tool.url}" target="_blank" class="try-tool-btn">
+    Try Tool ↗
+</a>                 </div>
                 `).join('')}
             </div>
         `;
@@ -256,16 +274,16 @@ if (window.location.pathname.includes('category.html')) {
             }
 
             container.innerHTML = tools.map(tool => `
-                <div class="bg-white rounded-xl shadow-lg hover:shadow-xl p-6 transition">
+                <div class="tool-card bg-white rounded-xl shadow-lg hover:shadow-xl p-6">
                     <div class="flex justify-between items-start mb-2">
                         <h3 class="text-xl font-bold text-purple-600">${escapeHtml(tool.name)}</h3>
                         <span class="text-xs px-2 py-1 rounded-full ${tool.price === 'Free' ? 'bg-green-100 text-green-700' : tool.price === 'Free/Paid' ? 'bg-blue-100 text-blue-700' : 'bg-orange-100 text-orange-700'}">${tool.price}</span>
                     </div>
                     <p class="text-gray-500 text-sm mb-2">${escapeHtml(tool.subcategory)}</p>
                     <p class="text-gray-600 mb-4 text-sm">${escapeHtml(tool.desc.substring(0, 120))}${tool.desc.length > 120 ? '...' : ''}</p>
-                    <a href="${tool.url}" target="_blank" class="text-purple-600 font-semibold inline-flex items-center group">
-                        Try Tool <i class="fas fa-external-link-alt ml-1 text-xs group-hover:translate-x-1 transition"></i>
-                    </a>
+                   <a href="${tool.url}" target="_blank" class="try-tool-btn">
+    Try Tool ↗
+</a>
                 </div>
             `).join('');
         }

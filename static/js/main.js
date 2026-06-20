@@ -1,19 +1,5 @@
-const savedTheme = localStorage.getItem("theme");
 
-if (savedTheme === "dark") {
-    document.body.classList.add("dark");
-}
-function toggleTheme() {
-    document.body.classList.toggle("dark");
-
-    if (document.body.classList.contains("dark")) {
-        localStorage.setItem("theme", "dark");
-    } else {
-        localStorage.setItem("theme", "light");
-    }
-}
-
-// Dynamic navbar based on authentication cookies
+// Dynamic navbar and theme toggle injection
 document.addEventListener("DOMContentLoaded", () => {
     const cookies = document.cookie.split("; ").reduce((acc, current) => {
         const [name, value] = current.split("=");
@@ -24,7 +10,6 @@ document.addEventListener("DOMContentLoaded", () => {
     const isAdmin = cookies["admin_logged_in"] === "true";
     const isUser = cookies["user_logged_in"] === "true";
 
-    const navActions = document.querySelector(".nav-actions");
     const navLinks = document.querySelector(".nav-links");
 
     if (isAdmin) {
@@ -73,6 +58,8 @@ document.addEventListener("DOMContentLoaded", () => {
             navLinks.appendChild(logoutLink);
         }
     }
+
+
 
     // Auto-fade flash messages
     const flashMessages = document.querySelectorAll(".flash-message");

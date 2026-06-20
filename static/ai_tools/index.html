@@ -5,30 +5,52 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="icon" type="image/png" href="favicon.png">
-    <title>AI Tools Directory</title>
+    <title>AI Tools Directory - InfoHub</title>
     <script src="https://cdn.tailwindcss.com"></script>
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link rel="stylesheet" href="../css/style.css">
     <link rel="stylesheet" href="css/style.css">
 </head>
 
 <body class="bg-gray-50">
 
-    <header class="bg-gradient-to-r from-purple-600 to-indigo-600 text-white py-16">
+    <nav class="navbar">
+        <div class="brand">
+            <span>InfoHub</span>
+        </div>
+
+        <input type="checkbox" id="menu-bar" style="display: none;">
+        <label for="menu-bar" class="menu-toggle"><i class="fas fa-bars"></i></label>
+
+        <div class="nav-links">
+            <a href="../../templates/index.html" class="nav-link-home">Home</a>
+            <a href="../../templates/projects.html" class="nav-link-projects">Projects</a>
+            <a href="../../templates/about.html" class="nav-link-about">About</a>
+            <a href="../../templates/blog.html" class="nav-link-blog">Blog</a>
+            <a href="../../templates/contact.html" class="nav-link-contact">Contact</a>
+            <a href="../../templates/login.html" class="mobile-action nav-link-login">Login</a>
+            <a href="../../templates/register.html"
+                class="mobile-action mobile-register-btn nav-link-register">Register</a>
+        </div>
+
+        <div class="nav-actions">
+            <a href="../../templates/login.html" class="login-link nav-link-login">Login</a>
+            <a href="../../templates/register.html" class="register-btn nav-link-register">Register</a>
+        </div>
+    </nav>
+
+    <header class="bg-gradient-to-r from-purple-600 to-indigo-600 text-white py-16 relative">
         <div class="max-w-7xl mx-auto px-4 text-center">
-            <i class="fas fa-brain text-6xl mb-4"></i>
+            <div class="hero-icon">🤖</div>
             <h1 class="text-5xl md:text-6xl font-bold mb-4">AI Tools Directory</h1>
             <p class="text-xl opacity-90 max-w-2xl mx-auto">Discover the best AI tools for every category</p>
         </div>
     </header>
 
-    <div class="max-w-7xl mx-auto px-4 -mt-6">
-        <div class="bg-white rounded-2xl shadow-xl p-4">
-            <div class="relative">
-                <i class="fas fa-search absolute left-4 top-1/2 transform -translate-y-1/2 text-gray-400"></i>
-                <input type="text" id="globalSearch"
-                    placeholder="Search any AI tool by name, category, or description..."
-                    class="w-full pl-12 pr-4 py-4 border-0 rounded-xl focus:outline-none focus:ring-2 focus:ring-purple-500 text-lg">
-            </div>
+    <div class="ai-search-section">
+        <div class="search-wrap">
+            <span class="search-emoji">🔍</span>
+            <input type="text" id="globalSearch" placeholder="Search any AI tool by name, category, or description...">
         </div>
     </div>
 
@@ -37,12 +59,51 @@
         <div id="categoriesGrid" class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6"></div>
     </div>
 
-    <footer class="bg-gray-800 text-white py-8 mt-12 text-center">
-        <p>© 2025 AI Tools Directory | Part of InfoHub Portfolio</p>
+    <footer class="footer">
+        <div class="footer-grid">
+            <div>
+                <h3>InfoHub</h3>
+                <p>Building innovative software, AI solutions,
+                    and future technology projects while sharing
+                    my journey as a developer and entrepreneur.</p>
+            </div>
+
+            <div>
+                <h3>Quick Links</h3>
+                <a href="../../templates/index.html" class="nav-link-home">Home</a>
+                <a href="../../templates/projects.html" class="nav-link-projects">Projects</a>
+                <a href="../../templates/about.html" class="nav-link-about">About</a>
+                <a href="../../templates/contact.html" class="nav-link-contact">Contact</a>
+            </div>
+
+            <div>
+                <h3>Resources</h3>
+                <a href="../../templates/blog.html" class="nav-link-blog">Blog</a>
+                <a href="#">Documentation</a>
+                <a href="#">GitHub</a>
+                <a href="#">Portfolio</a>
+            </div>
+
+            <div>
+                <h3>Connect</h3>
+                <div class="footer-social">
+                    <a href="https://github.com/niranjan-2724/InfoHub"><i class="fab fa-github"></i></a>
+                    <a href="#"><i class="fab fa-linkedin"></i></a>
+                    <a href="https://x.com/niranj_27"><i class="fab fa-x-twitter"></i></a>
+                    <a href="#"><i class="fab fa-instagram"></i></a>
+                </div>
+            </div>
+        </div>
+        <div
+            style="text-align: center; margin-top: 40px; padding-top: 20px; border-top: 1px solid #334155; font-size: 14px; color: #94a3b8; width: 100%;">
+            <p>&copy; 2025 InfoHub. All Rights Reserved.</p>
+        </div>
     </footer>
 
     <script src="js/data.js"></script>
     <script src="js/main.js"></script>
+    <script src="../js/main.js"></script>
+    <script src="../js/navbar-adjust.js"></script>
 </body>
 
 </html>

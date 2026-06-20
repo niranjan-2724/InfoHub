@@ -8,31 +8,48 @@
     <link rel="icon" type="image/png" href="../static/images/logo.png">
     <link rel="stylesheet" href="../static/css/style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 </head>
 
 <body>
 
     <nav class="navbar">
         <div class="brand">
-            <span>InfoHub</span>
+            <span>Info<span class="blue-text">Hub</span></span>
         </div>
 
         <input type="checkbox" id="menu-bar" style="display: none;">
         <label for="menu-bar" class="menu-toggle"><i class="fas fa-bars"></i></label>
 
         <div class="nav-links">
-            <a href="index.html">Home</a>
+            <a href="index.html" class="active">Home</a>
             <a href="projects.html">Projects</a>
             <a href="about.html">About</a>
             <a href="blog.html">Blog</a>
             <a href="contact.html">Contact</a>
+            {% if session.admin %}
+            <a href="/admin/dashboard" class="mobile-action">Dashboard</a>
+            <a href="/logout" class="mobile-action mobile-register-btn">Logout</a>
+            {% elif session.user %}
+            <span class="mobile-action welcome-text">Hello, {{ session.user_name }}</span>
+            <a href="/logout" class="mobile-action mobile-register-btn">Logout</a>
+            {% else %}
             <a href="login.html" class="mobile-action">Login</a>
             <a href="register.html" class="mobile-action mobile-register-btn">Register</a>
+            {% endif %}
         </div>
 
         <div class="nav-actions">
+            {% if session.admin %}
+            <a href="/admin/dashboard" class="login-link">Dashboard</a>
+            <a href="/logout" class="register-btn">Logout</a>
+            {% elif session.user %}
+            <span class="welcome-text">Hello, {{ session.user_name }}</span>
+            <a href="/logout" class="register-btn">Logout</a>
+            {% else %}
             <a href="login.html" class="login-link">Login</a>
             <a href="register.html" class="register-btn">Register</a>
+            {% endif %}
         </div>
     </nav>
 
@@ -49,24 +66,71 @@
     {% endif %}
     {% endwith %}
 
-    <section class="hero">
+    <section class="hero-section">
+
         <div class="hero-content">
-            <h1>Welcome to InfoHub</h1>
-            <p>Your gateway to innovative projects, career resources, and cutting-edge AI tools</p>
 
-            <div class="hero-buttons">
+            <div class="hero-left">
 
-                <a href="/projects" class="hero-btn primary-btn">
-                    <i class="fas fa-folder-open"></i>
-                    Explore Projects
-                </a>
 
-                <a href="/register" class="hero-btn secondary-btn">
-                    <i class="fas fa-user-plus"></i>
-                    Get Started
-                </a>
+
+                <h1>
+                    Welcome to
+                    <span>InfoHub</span>
+                </h1>
+
+                <p>
+                    Showcasing innovative projects, modern web solutions, and future focused technology ideas.
+                </p>
+
+                <div class="hero-line"></div>
+
+                <div class="hero-buttons">
+
+                    <a href="projects.html" class="hero-btn primary-btn">
+                        <i class="fas fa-folder-open"></i>
+                        Explore Projects
+                    </a>
+
+                    <a href="register.html" class="hero-btn secondary-btn">
+                        <i class="fas fa-user-plus"></i>
+                        Get Started
+                    </a>
+
+                </div>
+
 
             </div>
+
+        </div>
+
+    </section>
+    <section class="home-stats-section">
+        <div class="hero-stats">
+            <div class="stat-box">
+                <i class="fas fa-rocket"></i>
+                <div>
+                    <h3>50+</h3>
+                    <p>Projects</p>
+                </div>
+            </div>
+
+            <div class="stat-box">
+                <i class="fas fa-code"></i>
+                <div>
+                    <h3>10+</h3>
+                    <p>Technologies</p>
+                </div>
+            </div>
+
+            <div class="stat-box">
+                <i class="fas fa-trophy"></i>
+                <div>
+                    <h3>5+</h3>
+                    <p>Concepts</p>
+                </div>
+            </div>
+        </div>
     </section>
 
     <section class="section">
@@ -75,26 +139,27 @@
         <div class="project-grid">
             <div class="project-card">
                 <img src="../static/images/aitools.webp">
-                <div class="project-footer">
-                    <a href="/projects/ai-tools-directory/index.html" class="project-arrow">
-
-                    </a>
-                </div>
-
                 <h3>AI Tools Directory</h3>
-                <p>A collection of useful AI tools and resources arranged in one simple platform.</p>
+                <p>Discover and explore AI tools for productivity, content creation, coding, design, and more in one
+                    place.</p>
                 <small>HTML, CSS, JavaScript</small>
             </div>
 
             <div class="project-card">
-                <img src="../static/images/nexus.jpg">
-                <h3>Project Nexus</h3>
-                <p>A future-focused intelligent technology project currently in planning and development.</p>
-                <small>Coming Soon</small>
+                <img src="../static/images/uivalut.png">
+                <h3>Nexus UI</h3>
+                <p>A modern UI library containing ready-made templates and frontend components to build pages faster.
+                </p>
+                <small>HTML, CSS, JavaScript</small>
             </div>
-        </div>
 
-
+            <div class="project-card">
+                <img src="../static/images/smartgov.png" alt="Smart GOV">
+                <h3>Smart GOV</h3>
+                <p>A student-focused career development portal that provides guidance,
+                    skill-building resources, and career growth opportunities.</p>
+                <small>Python, Flask, SQLAlchemy</small>
+            </div>
         </div>
     </section>
 
@@ -104,31 +169,30 @@
         <div class="why-grid">
             <div class="why-card">
                 <div class="icon-circle">🚀</div>
-                <h3>Innovative Projects</h3>
-                <p>Creative digital projects built with modern technologies and real-world ideas.</p>
+                <h3>Project Showcase</h3>
+                <p>Explore my web development, AI, and software projects built with real-world ideas.</p>
             </div>
 
             <div class="why-card">
                 <div class="icon-circle">🤖</div>
-                <h3>AI Technology</h3>
-                <p>Exploring artificial intelligence, automation, and smart software solutions.</p>
+                <h3>AI & Technology</h3>
+                <p>Discover my learning journey in artificial intelligence, automation, and modern technologies.</p>
             </div>
 
             <div class="why-card">
-                <div class="icon-circle">🌐</div>
-                <h3>Future Ready</h3>
-                <p>Building scalable platforms that can grow into advanced tech products.</p>
+                <div class="icon-circle">✨</div>
+                <h3>Innovation Journey</h3>
+                <p>Follow my progress as I build projects, explore ideas, and grow as a developer.</p>
             </div>
         </div>
     </section>
-
     <footer class="footer">
         <div class="footer-grid">
             <div>
                 <h3>InfoHub</h3>
-                <p>Building innovative software, AI solutions,
-                    and future technology projects while sharing
-                    my journey as a developer and entrepreneur.</p>
+                <p>Building innovative software, AI solutions, and future technology projects while sharing my
+                    journey
+                    as a developer and entrepreneur.</p>
             </div>
 
             <div>
@@ -149,22 +213,22 @@
 
             <div>
                 <h3>Connect</h3>
-
                 <div class="footer-social">
                     <a href="https://github.com/niranjan-2724/InfoHub"><i class="fab fa-github"></i></a>
                     <a href="#"><i class="fab fa-linkedin"></i></a>
-                    <a href="#"><i class="fab fa-x-twitter"></i></a>
+                    <a href="https://x.com/niranj_27"><i class="fab fa-x-twitter"></i></a>
                     <a href="#"><i class="fab fa-instagram"></i></a>
                 </div>
             </div>
         </div>
-        <div
-            style="text-align: center; margin-top: 40px; padding-top: 20px; border-top: 1px solid #334155; font-size: 14px; color: #94a3b8; width: 100%;">
+
+        <div class="footer-bottom">
             <p>&copy; 2025 InfoHub. All Rights Reserved.</p>
         </div>
     </footer>
 
     <script src="../static/js/main.js"></script>
+
 </body>
 
 </html>

@@ -7,57 +7,94 @@
     <title>Blog - InfoHub</title>
     <link rel="icon" type="image/png" href="../static/images/logo.png">
     <link rel="stylesheet" href="../static/css/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 </head>
 
 <body>
 
     <nav class="navbar">
-        <div class="brand"><span>InfoHub</span></div>
+        <div class="brand">
+            <span>InfoHub</span>
+        </div>
+
+        <input type="checkbox" id="menu-bar" style="display: none;">
+        <label for="menu-bar" class="menu-toggle"><i class="fas fa-bars"></i></label>
 
         <div class="nav-links">
-            <a href="/">Home</a>
-            <a href="/projects">Projects</a>
-            <a href="/about">About</a>
-            <a href="/blog">Blog</a>
-            <a href="/contact">Contact</a>
+            <a href="index.html">Home</a>
+            <a href="projects.html">Projects</a>
+            <a href="about.html">About</a>
+            <a href="blog.html" class="active">Blog</a>
+            <a href="contact.html">Contact</a>
+            {% if session.admin %}
+                <a href="/admin/dashboard" class="mobile-action">Dashboard</a>
+                <a href="/logout" class="mobile-action mobile-register-btn">Logout</a>
+            {% elif session.user %}
+                <span class="mobile-action welcome-text">Hello, {{ session.user_name }}</span>
+                <a href="/logout" class="mobile-action mobile-register-btn">Logout</a>
+            {% else %}
+                <a href="login.html" class="mobile-action">Login</a>
+                <a href="register.html" class="mobile-action mobile-register-btn">Register</a>
+            {% endif %}
         </div>
 
         <div class="nav-actions">
-            {% if session.get('admin') %}
-            <a href="/admin/dashboard" class="login-link">Dashboard</a>
-            <a href="/logout" class="register-btn">Logout</a>
-            {% elif session.get('user') %}
-            <a href="/logout" class="register-btn">Logout</a>
+            {% if session.admin %}
+                <a href="/admin/dashboard" class="login-link">Dashboard</a>
+                <a href="/logout" class="register-btn">Logout</a>
+            {% elif session.user %}
+                <span class="welcome-text">Hello, {{ session.user_name }}</span>
+                <a href="/logout" class="register-btn">Logout</a>
             {% else %}
-            <a href="/login" class="login-link">Login</a>
-            <a href="/register" class="register-btn">Register</a>
+                <a href="login.html" class="login-link">Login</a>
+                <a href="register.html" class="register-btn">Register</a>
             {% endif %}
         </div>
     </nav>
+
+    {% with messages = get_flashed_messages(with_categories=true) %}
+    {% if messages %}
+    <div class="flash-container">
+        {% for category, message in messages %}
+        <div class="flash-message {{ 'info' if category == 'message' else category }}">
+            <span>{{ message }}</span>
+            <button class="flash-close-btn" onclick="this.parentElement.remove()">&times;</button>
+        </div>
+        {% endfor %}
+    </div>
+    {% endif %}
+    {% endwith %}
 
     <section class="simple-blog">
 
         <div class="blog-profile-card">
             <div class="blog-photo">
-                <img src="/static/images/niranjan.jpg" alt="Niranjan">
+                <img src="../static/images/niranjan.jpg" alt="Niranjan">
             </div>
             <h1>Niranjan C</h1>
-            <p>Full Stack Developer</p>
+            <p>Software Developer & Technology Enthusiast</p>
+            <a href="../static/files/Resume.pdf" download class="download-resume-btn">
+                <i class="fas fa-download"></i> Download Resume
+            </a>
         </div>
 
         <div class="blog-about-content">
             <h2>About Me</h2>
             <p>
-                I am Niranjan C, I am deeply interested in software development, artificial intelligence, machine
-                learning, and future technologies
+                I am Niranjan C, an Information Technology graduate and passionate software developer with a strong
+                interest in web development, artificial intelligence, and emerging technologies. I enjoy creating modern
+                digital solutions that combine functionality, user experience, and innovation.
             </p>
 
             <p>
                 My ultimate goal is to become a successful entrepreneur and build innovative technology companies
                 focused on Artificial Intelligence, Intelligent Automation, Software Solutions, and Future Computing
-                Systems. I am also working toward my long-term vision project, NexusAI, an AI-powered ecosystem designed
-                to integrate intelligent software, personal AI assistants, automation, and advanced technologies into a
-                unified platform.
+                Systems. I am constantly exploring new technologies, improving my problem-solving abilities, and
+                expanding my technical knowledge. My goal is to build meaningful software solutions, contribute to
+                innovative projects, and grow as a technology professional while helping shape the future through
+                digital innovation.Driven by curiosity and innovation, I aim to create impactful technology solutions
+                that improve lives and contribute to the future of digital transformation.
             </p>
         </div>
 
@@ -73,38 +110,75 @@
         <div class="detail-card">
             <h3>📞 Contact</h3>
             <p>Email: infohub.net.in@gmail.com</p>
-            <p>Phone: 7418203404</p>
+            <p>Phone: +91 7418203404</p>
         </div>
 
         <div class="detail-card">
             <h3>💻 Skills</h3>
-            <p>Full Stack Development, AI, Machine Learning, Web Development, Software Development</p>
+            <p>Full Stack Development, AI, Machine Learning, Web Development</p>
         </div>
 
         <div class="detail-card">
             <h3>🚀 Interests</h3>
-            <p>Entrepreneurship, AI, Software Development, Technology, Business</p>
+            <p>Entrepreneurship, AI, Software Development, Technology & Business</p>
         </div>
 
         <div class="detail-card full-card">
             <h3>🧩 My Projects</h3>
-            <p>
-                InfoHub, Smart GOV Career Development Website for Students,
-                AI Tools Website, and my long-term future project Nexus.
-            </p>
+            <p>Smart GOV Career Development Portal , InfoHub Portfolio Platform</p>
         </div>
 
         <div class="detail-card full-card">
             <h3>🌐 My Vision</h3>
             <p>
-                My long-term vision is to build Project Nexus, a future technology
-                ecosystem focused on AI, software, privacy, automation, and intelligent
-                personal computing.
+                My vision is to build innovative technology solutions focused on software,
+                artificial intelligence, automation, and future digital products.
             </p>
         </div>
 
     </section>
+    <footer class="footer">
+        <div class="footer-grid">
+            <div>
+                <h3>InfoHub</h3>
+                <p>Building innovative software, AI solutions,
+                    and future technology projects while sharing
+                    my journey as a developer and entrepreneur.</p>
+            </div>
 
+            <div>
+                <h3>Quick Links</h3>
+                <a href="index.html">Home</a>
+                <a href="projects.html">Projects</a>
+                <a href="about.html">About</a>
+                <a href="contact.html">Contact</a>
+            </div>
+
+            <div>
+                <h3>Resources</h3>
+                <a href="blog.html">Blog</a>
+                <a href="#">Documentation</a>
+                <a href="https://github.com/niranjan-2724/InfoHub">GitHub</a>
+                <a href="#">Portfolio</a>
+            </div>
+
+            <div>
+                <h3>Connect</h3>
+                <div class="footer-social">
+                    <a href="https://github.com/niranjan-2724/InfoHub"><i class="fab fa-github"></i></a>
+                    <a href="#"><i class="fab fa-linkedin"></i></a>
+                    <a href="https://x.com/niranj_27"><i class="fab fa-x-twitter"></i></a>
+                    <a href="#"><i class="fab fa-instagram"></i></a>
+                </div>
+            </div>
+        </div>
+        <div
+            style="text-align: center; margin-top: 40px; padding-top: 20px; border-top: 1px solid #334155; font-size: 14px; color: #94a3b8; width: 100%;">
+            <p>&copy; 2025 InfoHub. All Rights Reserved.</p>
+        </div>
+    </footer>
+
+    <script src="../static/js/main.js"></script>
 </body>
 
 </html>

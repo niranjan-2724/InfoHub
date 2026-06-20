@@ -8,6 +8,7 @@
     <link rel="icon" type="image/png" href="../static/images/logo.png">
     <link rel="stylesheet" href="../static/css/style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 </head>
 
 <body>
@@ -22,17 +23,33 @@
 
         <div class="nav-links">
             <a href="index.html">Home</a>
-            <a href="projects.html">Projects</a>
+            <a href="projects.html" class="active">Projects</a>
             <a href="about.html">About</a>
             <a href="blog.html">Blog</a>
             <a href="contact.html">Contact</a>
+            {% if session.admin %}
+            <a href="/admin/dashboard" class="mobile-action">Dashboard</a>
+            <a href="/logout" class="mobile-action mobile-register-btn">Logout</a>
+            {% elif session.user %}
+            <span class="mobile-action welcome-text">Hello, {{ session.user_name }}</span>
+            <a href="/logout" class="mobile-action mobile-register-btn">Logout</a>
+            {% else %}
             <a href="login.html" class="mobile-action">Login</a>
             <a href="register.html" class="mobile-action mobile-register-btn">Register</a>
+            {% endif %}
         </div>
 
         <div class="nav-actions">
+            {% if session.admin %}
+            <a href="/admin/dashboard" class="login-link">Dashboard</a>
+            <a href="/logout" class="register-btn">Logout</a>
+            {% elif session.user %}
+            <span class="welcome-text">Hello, {{ session.user_name }}</span>
+            <a href="/logout" class="register-btn">Logout</a>
+            {% else %}
             <a href="login.html" class="login-link">Login</a>
             <a href="register.html" class="register-btn">Register</a>
+            {% endif %}
         </div>
     </nav>
 
@@ -44,11 +61,12 @@
             <span>{{ message }}</span>
             <button class="flash-close-btn" onclick="this.parentElement.remove()">&times;</button>
         </div>
-
         {% endfor %}
     </div>
     {% endif %}
     {% endwith %}
+
+
 
     <section class="page-head">
         <h1>My Projects</h1>
@@ -68,14 +86,14 @@
                 <h3>AI Tools Directory</h3>
 
                 <p>
-                    A simple directory website that collects useful AI tools
-                    and resources in one clean platform.
+                    Discover and explore AI tools for productivity, content creation, coding, design, and more in one
+                    place.
                 </p>
 
                 <small>HTML, CSS, JavaScript</small>
 
                 <div class="project-footer">
-                    <a href="/static/ai_tools/index.html" class="project-arrow">
+                    <a href="../static/ai_tools/index.html" class="project-arrow" target="_blank">
                         <i class="fas fa-arrow-up-right-from-square"></i>
                     </a>
                 </div>
@@ -86,18 +104,45 @@
 
             <div class="project-card">
 
-                <img src="../static/images/nexus.jpg" alt="Project Nexus">
+                <img src="../static/images/uivalut.png" alt="Nexus UI">
 
-                <h3>Project Nexus</h3>
+                <h3>Nexus UI</h3>
 
                 <p>
-                    A future-focused technology concept designed around
-                    intelligent, private, and personal computing ideas.
+                    A modern UI library containing ready-made templates and modern frontend components to build pages
+                    faster.
                 </p>
 
-                <span class="coming-soon">
-                    Coming Soon
-                </span>
+                <small>HTML, CSS, JavaScript</small>
+
+                <div class="project-footer">
+                    <a href="../static/nexus_ui/index.html" class="project-arrow" target="_blank">
+                        <i class="fas fa-arrow-up-right-from-square"></i>
+                    </a>
+                </div>
+
+            </div>
+
+            <!-- SMART GOV -->
+
+            <div class="project-card">
+
+                <img src="../static/images/smartgov.png" alt="Smart GOV">
+
+                <h3>Smart GOV</h3>
+
+                <p>
+                    A student-focused career development portal that provides guidance,
+                    skill-building resources, and career growth opportunities.
+                </p>
+
+                <small>Python, Flask, SQLAlchemy, </small>
+
+                <div class="project-footer">
+                    <a href="#" class="project-arrow" target="_blank">
+                        <i class="fas fa-arrow-up-right-from-square"></i>
+                    </a>
+                </div>
 
             </div>
 
@@ -109,7 +154,9 @@
         <div class="footer-grid">
             <div>
                 <h3>InfoHub</h3>
-                <p>Showcasing innovative tech projects, AI tools, and digital ideas for the future.</p>
+                <p>Building innovative software, AI solutions,
+                    and future technology projects while sharing
+                    my journey as a developer and entrepreneur.</p>
             </div>
 
             <div>
@@ -117,15 +164,14 @@
                 <a href="index.html">Home</a>
                 <a href="projects.html">Projects</a>
                 <a href="about.html">About</a>
-                <a href="blog.html">Blog</a>
                 <a href="contact.html">Contact</a>
             </div>
 
             <div>
                 <h3>Resources</h3>
-                <a href="#">Blog</a>
+                <a href="blog.html">Blog</a>
                 <a href="#">Documentation</a>
-                <a href="#">GitHub</a>
+                <a href="https://github.com/niranjan-2724/InfoHub">GitHub</a>
                 <a href="#">Portfolio</a>
             </div>
 
@@ -134,7 +180,7 @@
                 <div class="footer-social">
                     <a href="https://github.com/niranjan-2724/InfoHub"><i class="fab fa-github"></i></a>
                     <a href="#"><i class="fab fa-linkedin"></i></a>
-                    <a href="#"><i class="fab fa-x-twitter"></i></a>
+                    <a href="https://x.com/niranj_27"><i class="fab fa-x-twitter"></i></a>
                     <a href="#"><i class="fab fa-instagram"></i></a>
                 </div>
             </div>

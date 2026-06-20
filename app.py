@@ -21,8 +21,8 @@ projects = db["projects"]
 admin_logs = db["admin_logs"]
 messages = db["messages"]
 
-ADMIN_EMAIL = os.getenv("ADMIN_EMAIL",)
-ADMIN_PASSWORD = os.getenv("ADMIN_PASSWORD",)
+ADMIN_EMAIL = os.getenv("ADMIN_EMAIL", "")
+ADMIN_PASSWORD = os.getenv("ADMIN_PASSWORD", "")
 ADMIN_NAME = os.getenv("ADMIN_NAME", "Niranjan")
 ADMIN_PHONE = os.getenv("ADMIN_PHONE", "+91 7418203404")
 ADMIN_LOCATION = os.getenv("ADMIN_LOCATION", "India")
@@ -61,12 +61,21 @@ def get_default_projects():
             "created_at": now()
         },
         {
-            "title": "Project Nexus",
-            "description": "A future-focused intelligent technology project currently in planning and development.",
-            "tech": "AI, Software, Automation",
-            "link": "#",
+            "title": "Nexus UI",
+            "description": "A modern UI library containing ready-made templates and modern frontend components to build pages faster.",
+            "tech": "HTML, CSS, JavaScript",
+            "link": "/static/nexus_ui/index.html",
             "image": "/static/images/nexus.jpg",
-            "status": "Coming Soon",
+            "status": "Live",
+            "created_at": now()
+        },
+        {
+            "title": "Smart GOV",
+            "description": "A career development website for students.",
+            "tech": "Python, Flask, HTML, CSS, JavaScript, MongoDB",
+            "link": "#",
+            "image": "/static/images/smartgov.png",
+            "status": "Live",
             "created_at": now()
         }
     ]
@@ -210,7 +219,7 @@ def login():
         password = request.form.get("password", "")
 
         # Admin login
-        if email == ADMIN_EMAIL.lower() and password == ADMIN_PASSWORD:
+        if ADMIN_EMAIL and email == ADMIN_EMAIL.lower() and password == ADMIN_PASSWORD:
             session.clear()
             session["admin"] = True
             session["admin_email"] = ADMIN_EMAIL
@@ -224,6 +233,7 @@ def login():
 
             response = redirect(url_for("admin_dashboard"))
             response.set_cookie("admin_logged_in", "true", max_age=30*24*60*60)
+            response.set_cookie("user_name", ADMIN_NAME, max_age=30*24*60*60)
             return response
 
         # Normal user login
@@ -241,6 +251,7 @@ def login():
 
             response = redirect(url_for("home"))
             response.set_cookie("user_logged_in", "true", max_age=30*24*60*60)
+            response.set_cookie("user_name", user.get("name", "User"), max_age=30*24*60*60)
             return response
 
         flash("Invalid email or password.", "error")
@@ -256,6 +267,7 @@ def logout():
     response = redirect(url_for("home"))
     response.delete_cookie("admin_logged_in")
     response.delete_cookie("user_logged_in")
+    response.delete_cookie("user_name")
     return response
 
 
